@@ -8,4 +8,10 @@
     <string name="image2_description">Cookies</string>
     <string name="image3_description">Cake</string>
     <string name="results_placeholder">(Results will appear here)</string>
+    <string name="player_health">Player Health:</string>
+    <string name="opponent_health">Opponent Health:</string>
+    <string name="no_actions_yet">No actions yet…</string>
+    <string name="start_game">Start Game</string>
+    <string name="stop_game">Stop Game</string>
+    <string name="action_log">Action Log:</string>
 </resources>

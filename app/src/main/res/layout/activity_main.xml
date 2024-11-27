@@ -1,17 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:fitsSystemWindows="true"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp"
     tools:context=".MainActivity">
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="32dp" />
 
     <!-- Player Health -->
     <TextView
         android:id="@+id/playerHealthLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Player Health:"
+        android:text="@string/player_health"
         android:textSize="18sp"
         android:layout_alignParentStart="true"
         android:layout_marginTop="16dp" />
@@ -32,7 +37,7 @@
         android:id="@+id/opponentHealthLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Opponent Health:"
+        android:text="@string/opponent_health"
         android:textSize="18sp"
         android:layout_below="@id/playerHealthLabel"
         android:layout_marginTop="16dp" />
@@ -53,7 +58,7 @@
         android:id="@+id/actionLogLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Action Log:"
+        android:text="@string/action_log"
         android:textSize="18sp"
         android:layout_below="@id/opponentHealthLabel"
         android:layout_marginTop="16dp" />
@@ -71,7 +76,7 @@
             android:id="@+id/actionLog"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="No actions yet..."
+            android:text="@string/no_actions_yet"
             android:textColor="@android:color/white"
             android:textSize="14sp" />
     </ScrollView>
@@ -81,7 +86,7 @@
         android:id="@+id/startGameButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Start Game"
+        android:text="@string/start_game"
         android:layout_below="@id/actionLogScrollView"
         android:layout_marginTop="16dp"
         android:layout_alignParentStart="true" />
@@ -91,7 +96,7 @@
         android:id="@+id/stopGameButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Stop Game"
+        android:text="@string/stop_game"
         android:layout_toEndOf="@id/startGameButton"
         android:layout_alignBaseline="@id/startGameButton"
         android:layout_marginStart="16dp" />
