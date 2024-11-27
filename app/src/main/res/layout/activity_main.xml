@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    tools:context=".MainActivity">
+
+    <!-- Player Health -->
+    <TextView
+        android:id="@+id/playerHealthLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Player Health:"
+        android:textSize="18sp"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="16dp" />
+
+    <ProgressBar
+        android:id="@+id/playerHealthBar"
+        style="@android:style/Widget.DeviceDefault.ProgressBar.Horizontal"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@id/playerHealthLabel"
+        android:layout_alignBaseline="@id/playerHealthLabel"
+        android:layout_marginStart="8dp"
+        android:max="100"
+        android:progress="100" />
+
+    <!-- Opponent Health -->
+    <TextView
+        android:id="@+id/opponentHealthLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Opponent Health:"
+        android:textSize="18sp"
+        android:layout_below="@id/playerHealthLabel"
+        android:layout_marginTop="16dp" />
+
+    <ProgressBar
+        android:id="@+id/opponentHealthBar"
+        style="@android:style/Widget.DeviceDefault.ProgressBar.Horizontal"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@id/opponentHealthLabel"
+        android:layout_alignBaseline="@id/opponentHealthLabel"
+        android:layout_marginStart="8dp"
+        android:max="100"
+        android:progress="100" />
+
+    <!-- Action Log -->
+    <TextView
+        android:id="@+id/actionLogLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Action Log:"
+        android:textSize="18sp"
+        android:layout_below="@id/opponentHealthLabel"
+        android:layout_marginTop="16dp" />
+
+    <ScrollView
+        android:id="@+id/actionLogScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_below="@id/actionLogLabel"
+        android:layout_marginTop="8dp"
+        android:background="@android:color/darker_gray"
+        android:padding="8dp">
+
+        <TextView
+            android:id="@+id/actionLog"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="No actions yet..."
+            android:textColor="@android:color/white"
+            android:textSize="14sp" />
+    </ScrollView>
+
+    <!-- Start Game Button -->
+    <Button
+        android:id="@+id/startGameButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Start Game"
+        android:layout_below="@id/actionLogScrollView"
+        android:layout_marginTop="16dp"
+        android:layout_alignParentStart="true" />
+
+    <!-- Stop Game Button -->
+    <Button
+        android:id="@+id/stopGameButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Stop Game"
+        android:layout_toEndOf="@id/startGameButton"
+        android:layout_alignBaseline="@id/startGameButton"
+        android:layout_marginStart="16dp" />
+
+</RelativeLayout>

@@ -1,6 +1,6 @@
 // GameState.kt
 
-package com.example.swordfightinggame
+package com.example.uwb_sword_fighting_app
 
 /**
  * A class to manage the game state, including player health and actions.

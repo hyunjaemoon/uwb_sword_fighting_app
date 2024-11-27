@@ -1,6 +1,6 @@
 // MainActivity.kt
 
-package com.example.swordfightinggame
+package com.example.uwb_sword_fighting_app
 
 import android.Manifest
 import android.content.pm.PackageManager
@@ -102,6 +102,7 @@ class MainActivity : AppCompatActivity() {
         permissions: Array<String>,
         grantResults: IntArray
     ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         if (requestCode == PERMISSION_REQUEST_CODE) {
             if (grantResults.any { it != PackageManager.PERMISSION_GRANTED }) {
                 Toast.makeText(
