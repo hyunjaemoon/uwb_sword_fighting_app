@@ -5,6 +5,7 @@ package com.example.uwb_sword_fighting_app
 import android.Manifest
 import android.content.pm.PackageManager
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
@@ -146,6 +147,7 @@ class MainActivity : AppCompatActivity() {
     private fun updateGameState(distance: Float, azimuth: Float) {
         // Use distance and azimuth to determine if an attack can hit
         if (distance < GameState.ATTACK_RANGE && gameState.isAttacking) {
+            Log.d("UwbSwordFightingApp", "Attack hit!: Distance=$distance, Azimuth=$azimuth")
             // Successful hit
             gameState.opponentHealth -= GameState.ATTACK_DAMAGE
             networkingHelper.sendGameState(gameState)
