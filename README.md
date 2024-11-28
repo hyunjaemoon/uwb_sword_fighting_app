@@ -1,10 +1,10 @@
-# SwordFightingGame
+# uwb_sword_fighting_app (WIP)
 
 An Android sword fighting game template utilizing Ultra-Wideband (UWB) technology.
 
 ## Overview
 
-This project serves as a template for creating an Android sword fighting game that leverages UWB technology for real-time spatial interaction. It uses motion sensors to detect sword swings and the Nearby Connections API for multiplayer functionality.
+This project serves as a template for creating an Android sword fighting game that leverages UWB technology for real-time spatial interaction. It uses motion sensors to detect sword swings and the Anrdroid UWB API for multiplayer functionality.
 
 ## Features
 
@@ -18,3 +18,6 @@ This project serves as a template for creating an Android sword fighting game th
 - **Android Studio**: Latest version recommended.
 - **UWB-Compatible Devices**: Devices with UWB capabilities (e.g., Google Pixel Pro Series).
 - **Minimum SDK**: Android S (API level 31) or higher.
+
+## Author
+Hyun Jae Moon [calhyunjaemoon@gmail.com]
