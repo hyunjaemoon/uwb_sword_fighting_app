@@ -5,6 +5,8 @@ package com.example.uwb_sword_fighting_app
 import android.Manifest
 import android.content.pm.PackageManager
 import android.os.Bundle
+import android.widget.Button
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
@@ -15,9 +17,20 @@ class MainActivity : AppCompatActivity() {
     private lateinit var sensorManagerHelper: SensorManagerHelper
     private lateinit var networkingHelper: NetworkingHelper
     private lateinit var gameState: GameState
+    private lateinit var rangingStatusLabel: TextView
 
     companion object {
         const val PERMISSION_REQUEST_CODE = 100
+    }
+
+    fun updateRangingStatus(isRangingRunning: Boolean) {
+        runOnUiThread { // Update UI on the main thread
+            rangingStatusLabel.text = if (isRangingRunning) {
+                "Ranging Status: Active"
+            } else {
+                "Ranging Status: Idle"
+            }
+        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -54,10 +67,22 @@ class MainActivity : AppCompatActivity() {
         }
 
         // Start necessary services
-        uwbManagerHelper.startRangingSession()
-        sensorManagerHelper.registerSensors()
-        networkingHelper.startAdvertising()
-        networkingHelper.startDiscovery()
+        val startGameButton: Button = findViewById(R.id.startGameButton)
+        val stopGameButton: Button = findViewById(R.id.stopGameButton)
+        rangingStatusLabel = findViewById(R.id.rangingStatusLabel)
+
+        startGameButton.setOnClickListener{
+            uwbManagerHelper.startRangingSession()
+            sensorManagerHelper.registerSensors()
+            networkingHelper.startAdvertising()
+            networkingHelper.startDiscovery()
+        }
+
+        stopGameButton.setOnClickListener{
+            uwbManagerHelper.stopRangingSession()
+            sensorManagerHelper.unregisterSensors()
+            networkingHelper.stopAllConnections()
+        }
     }
 
     override fun onDestroy() {

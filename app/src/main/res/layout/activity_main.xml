@@ -81,6 +81,7 @@
             android:textSize="14sp" />
     </ScrollView>
 
+
     <!-- Start Game Button -->
     <Button
         android:id="@+id/startGameButton"
@@ -100,5 +101,14 @@
         android:layout_toEndOf="@id/startGameButton"
         android:layout_alignBaseline="@id/startGameButton"
         android:layout_marginStart="16dp" />
+
+    <TextView
+        android:id="@+id/rangingStatusLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/ranging_status"
+        android:textSize="18sp"
+        android:layout_below="@id/startGameButton"
+        android:layout_marginTop="16dp" />
 
 </RelativeLayout>

@@ -11,6 +11,7 @@ class UwbManagerHelper(
     private val uwbCallback: (distance: Float, azimuth: Float) -> Unit
 ) {
 
+    private var isRangingRunning = false
     private var mUwbManager: UwbManager? = null
     private var mContext: Context = context
     private var job: Job? = null
@@ -32,16 +33,23 @@ class UwbManagerHelper(
     fun startRangingSession() {
         // Mock implementation for starting a UWB ranging session
         Log.d("UwbManagerHelper", "Starting UWB ranging session.")
-        job = CoroutineScope(Dispatchers.Main.immediate).launch {
-            startRanging()
+        isRangingRunning = true
+        (mContext as? MainActivity)?.updateRangingStatus(isRangingRunning)
+        if (isUwbSupported()) {
+            job = CoroutineScope(Dispatchers.Main.immediate).launch {
+                startRanging()
+            }
+        } else {
+            // Simulate UWB data updates (distance and azimuth)
+            simulateUwbData()
         }
-        // Simulate UWB data updates (distance and azimuth)
-        simulateUwbData()
     }
 
     fun stopRangingSession() {
         // Mock implementation for stopping a UWB ranging session
         Log.d("UwbManagerHelper", "Stopping UWB ranging session.")
+        isRangingRunning = false
+        (mContext as? MainActivity)?.updateRangingStatus(isRangingRunning)
         job?.cancel()
     }
 
@@ -54,12 +62,13 @@ class UwbManagerHelper(
     private fun simulateUwbData() {
         // Simulate periodic UWB data updates for testing
         Thread {
-            while (true) {
+            while (isRangingRunning) {
                 try {
                     Thread.sleep(1000) // Update every second
                     val simulatedDistance = (1..5).random().toFloat() // Random distance between 1-5 meters
                     val simulatedAzimuth = (0..360).random().toFloat() // Random azimuth between 0-360 degrees
                     uwbCallback(simulatedDistance, simulatedAzimuth)
+                    Log.d("UwbManagerHelper", "Simulated UWB data: Distance=$simulatedDistance, Azimuth=$simulatedAzimuth")
                 } catch (e: InterruptedException) {
                     e.printStackTrace()
                     break
