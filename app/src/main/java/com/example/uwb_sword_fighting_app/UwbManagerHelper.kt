@@ -4,7 +4,7 @@ import android.content.Context
 import android.content.pm.PackageManager
 import android.util.Log
 import kotlinx.coroutines.*
-import androidx.core.uwb.UwbManager
+import androidx.core.uwb.*
 
 class UwbManagerHelper(
     context: Context,
@@ -54,9 +54,7 @@ class UwbManagerHelper(
     }
 
     private fun startRanging() {
-        // ... (Implementation from the Android documentation example) ...
-        // Replace placeholders like listenForPartnersAddress, broadcastMyParameters,
-        // and doSomethingWithPosition with your actual logic.
+        
     }
 
     private fun simulateUwbData() {
