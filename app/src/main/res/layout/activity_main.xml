@@ -53,6 +53,29 @@
         android:max="100"
         android:progress="100" />
 
+    <RadioGroup
+        android:id="@+id/roleRadioGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/opponentHealthLabel"
+        android:layout_marginTop="16dp">
+
+        <RadioButton
+            android:id="@+id/controllerRadioButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Controller"
+            tools:ignore="HardcodedText" />
+
+        <RadioButton
+            android:id="@+id/controleeRadioButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Controlee"
+            android:checked="true"
+            tools:ignore="HardcodedText" />
+    </RadioGroup>
+
     <!-- Action Log -->
     <TextView
         android:id="@+id/actionLogLabel"
@@ -60,7 +83,7 @@
         android:layout_height="wrap_content"
         android:text="@string/action_log"
         android:textSize="18sp"
-        android:layout_below="@id/opponentHealthLabel"
+        android:layout_below="@id/roleRadioGroup"
         android:layout_marginTop="16dp" />
 
     <ScrollView

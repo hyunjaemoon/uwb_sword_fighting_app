@@ -6,10 +6,21 @@ import android.util.Log
 import kotlinx.coroutines.*
 import androidx.core.uwb.*
 
+enum class UwbRole {
+    CONTROLLER,
+    CONTROLEE
+}
+
 class UwbManagerHelper(
     context: Context,
-    private val uwbCallback: (distance: Float, azimuth: Float) -> Unit
+    private val gameStateCallback: (distance: Float, azimuth: Float) -> Unit
 ) {
+
+    private var uwbRole: UwbRole = UwbRole.CONTROLEE
+
+    fun setUwbRole(role: UwbRole) {
+        uwbRole = role
+    }
 
     private var isRangingRunning = false
     private var mUwbManager: UwbManager? = null
@@ -32,7 +43,7 @@ class UwbManagerHelper(
 
     fun startRangingSession() {
         // Mock implementation for starting a UWB ranging session
-        Log.d("UwbManagerHelper", "Starting UWB ranging session.")
+        Log.d("UwbManagerHelper", "Starting UWB ranging session as $uwbRole.")
         isRangingRunning = true
         (mContext as? MainActivity)?.updateRangingStatus(isRangingRunning)
         if (isUwbSupported()) {
@@ -54,7 +65,14 @@ class UwbManagerHelper(
     }
 
     private fun startRanging() {
-        
+        when (uwbRole) {
+            UwbRole.CONTROLLER -> {
+                // Configure as controller
+            }
+            UwbRole.CONTROLEE -> {
+                // Configure as controlee
+            }
+        }
     }
 
     private fun simulateUwbData() {
@@ -65,7 +83,7 @@ class UwbManagerHelper(
                     Thread.sleep(1000) // Update every second
                     val simulatedDistance = (1..5).random().toFloat() // Random distance between 1-5 meters
                     val simulatedAzimuth = (0..360).random().toFloat() // Random azimuth between 0-360 degrees
-                    uwbCallback(simulatedDistance, simulatedAzimuth)
+                    gameStateCallback(simulatedDistance, simulatedAzimuth)
                     Log.d("UwbManagerHelper", "Simulated UWB data: Distance=$simulatedDistance, Azimuth=$simulatedAzimuth")
                 } catch (e: InterruptedException) {
                     e.printStackTrace()

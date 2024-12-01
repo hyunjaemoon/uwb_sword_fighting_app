@@ -3,14 +3,17 @@
 package com.example.uwb_sword_fighting_app
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
+import android.widget.RadioGroup
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
+import androidx.core.view.forEach
 
 class MainActivity : AppCompatActivity() {
 
@@ -19,17 +22,21 @@ class MainActivity : AppCompatActivity() {
     private lateinit var networkingHelper: NetworkingHelper
     private lateinit var gameState: GameState
     private lateinit var rangingStatusLabel: TextView
+    private lateinit var roleRadioGroup: RadioGroup
 
     companion object {
         const val PERMISSION_REQUEST_CODE = 100
     }
 
+    @SuppressLint("SetTextI18n")
     fun updateRangingStatus(isRangingRunning: Boolean) {
         runOnUiThread { // Update UI on the main thread
-            rangingStatusLabel.text = if (isRangingRunning) {
-                "Ranging Status: Active"
+            if (isRangingRunning) {
+                rangingStatusLabel.text = "Ranging Status: Active"
+                roleRadioGroup.forEach { radioButton -> radioButton.isEnabled = false }
             } else {
-                "Ranging Status: Idle"
+                rangingStatusLabel.text = "Ranging Status: Idle"
+                roleRadioGroup.forEach { radioButton -> radioButton.isEnabled = true }
             }
         }
     }
@@ -71,6 +78,7 @@ class MainActivity : AppCompatActivity() {
         val startGameButton: Button = findViewById(R.id.startGameButton)
         val stopGameButton: Button = findViewById(R.id.stopGameButton)
         rangingStatusLabel = findViewById(R.id.rangingStatusLabel)
+        roleRadioGroup = findViewById(R.id.roleRadioGroup)
 
         startGameButton.setOnClickListener{
             uwbManagerHelper.startRangingSession()
@@ -79,10 +87,22 @@ class MainActivity : AppCompatActivity() {
             networkingHelper.startDiscovery()
         }
 
-        stopGameButton.setOnClickListener{
+        stopGameButton.setOnClickListener {
             uwbManagerHelper.stopRangingSession()
             sensorManagerHelper.unregisterSensors()
             networkingHelper.stopAllConnections()
+        }
+
+        roleRadioGroup.setOnCheckedChangeListener{
+            _, checkedId ->
+            when (checkedId) {
+                R.id.controllerRadioButton -> {
+                    uwbManagerHelper.setUwbRole(UwbRole.CONTROLLER)
+                }
+                R.id.controleeRadioButton -> {
+                    uwbManagerHelper.setUwbRole(UwbRole.CONTROLLER)
+                }
+            }
         }
     }
 
