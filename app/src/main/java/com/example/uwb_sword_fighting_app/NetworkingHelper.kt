@@ -9,8 +9,8 @@ import android.content.Context
 import android.util.Log
 
 enum class NetworkingRole {
-    CONTROLLER,
-    CONTROLEE
+    ADVERTISER,
+    SCANNER
 }
 
 class NetworkingHelper(
@@ -23,7 +23,7 @@ class NetworkingHelper(
     private var mBluetoothManager: BluetoothManager? = null
     private var mBluetoothLeScanner: BluetoothLeScanner? = null
     private var mContext: Context = context
-    private var mNetworkingRole: NetworkingRole = NetworkingRole.CONTROLEE
+    private var mNetworkingRole: NetworkingRole = NetworkingRole.SCANNER
 
     fun setNetworkingRole(role: NetworkingRole) {
         mNetworkingRole = role
@@ -43,14 +43,24 @@ class NetworkingHelper(
     }
 
     fun startAdvertising() {
+        // Skip if role is not ADVERTISER
+        if (mNetworkingRole != NetworkingRole.ADVERTISER) {
+            return
+        }
+
         // Mock implementation for starting the advertising process
         isAdvertising = true
-        Log.d("NetworkingHelper", "Started advertising as $mNetworkingRole.")
+        Log.d("NetworkingHelper", "Started advertising")
         simulateIncomingGameState()
     }
 
     @SuppressLint("MissingPermission")
     fun startDiscovery() {
+        // Skip if role is not ADVERTISER
+        if (mNetworkingRole != NetworkingRole.SCANNER) {
+            return
+        }
+
         // Mock implementation for starting the discovery process
         isDiscovering = true
         Log.d("NetworkingHelper", "Started discovery as $mNetworkingRole.")

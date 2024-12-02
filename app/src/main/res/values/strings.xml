@@ -15,4 +15,6 @@
     <string name="stop_game">Stop Game</string>
     <string name="action_log">Action Log:</string>
     <string name="ranging_status">Ranging Status: Idle</string>
+    <string name="controller">Defender (controller)</string>
+    <string name="controlee">Contender (controlee)</string>
 </resources>

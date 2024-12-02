@@ -98,11 +98,11 @@ class MainActivity : AppCompatActivity() {
             when (checkedId) {
                 R.id.controllerRadioButton -> {
                     uwbManagerHelper.setUwbRole(UwbRole.CONTROLLER)
-                    networkingHelper.setNetworkingRole(NetworkingRole.CONTROLLER)
+                    networkingHelper.setNetworkingRole(NetworkingRole.ADVERTISER)
                 }
                 R.id.controleeRadioButton -> {
-                    uwbManagerHelper.setUwbRole(UwbRole.CONTROLLER)
-                    networkingHelper.setNetworkingRole(NetworkingRole.CONTROLEE)
+                    uwbManagerHelper.setUwbRole(UwbRole.CONTROLEE)
+                    networkingHelper.setNetworkingRole(NetworkingRole.SCANNER)
                 }
             }
         }

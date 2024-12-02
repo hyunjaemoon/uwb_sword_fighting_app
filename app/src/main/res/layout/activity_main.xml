@@ -64,16 +64,14 @@
             android:id="@+id/controllerRadioButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Controller"
-            tools:ignore="HardcodedText" />
+            android:text="@string/controller" />
 
         <RadioButton
             android:id="@+id/controleeRadioButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Controlee"
-            android:checked="true"
-            tools:ignore="HardcodedText" />
+            android:text="@string/controlee"
+            android:checked="true" />
     </RadioGroup>
 
     <!-- Action Log -->
