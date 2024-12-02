@@ -8,6 +8,11 @@ import android.bluetooth.le.ScanResult
 import android.content.Context
 import android.util.Log
 
+enum class NetworkingRole {
+    CONTROLLER,
+    CONTROLEE
+}
+
 class NetworkingHelper(
     context: Context,
     private val onGameStateReceived: (gameState: GameState) -> Unit
@@ -18,6 +23,11 @@ class NetworkingHelper(
     private var mBluetoothManager: BluetoothManager? = null
     private var mBluetoothLeScanner: BluetoothLeScanner? = null
     private var mContext: Context = context
+    private var mNetworkingRole: NetworkingRole = NetworkingRole.CONTROLEE
+
+    fun setNetworkingRole(role: NetworkingRole) {
+        mNetworkingRole = role
+    }
 
     // Device scan callback.
     private val leScanCallback: ScanCallback = object : ScanCallback() {
@@ -35,7 +45,7 @@ class NetworkingHelper(
     fun startAdvertising() {
         // Mock implementation for starting the advertising process
         isAdvertising = true
-        Log.d("NetworkingHelper", "Started advertising.")
+        Log.d("NetworkingHelper", "Started advertising as $mNetworkingRole.")
         simulateIncomingGameState()
     }
 
@@ -43,7 +53,7 @@ class NetworkingHelper(
     fun startDiscovery() {
         // Mock implementation for starting the discovery process
         isDiscovering = true
-        Log.d("NetworkingHelper", "Started discovery.")
+        Log.d("NetworkingHelper", "Started discovery as $mNetworkingRole.")
         mBluetoothLeScanner?.startScan(leScanCallback)
     }
 
